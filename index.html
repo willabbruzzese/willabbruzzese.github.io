@@ -344,7 +344,7 @@
       </div>
     </article>
 
-  <!-- Project 2 — Rocket Avionics, split into two sub-projects -->
+<!-- Project 2 — Rocket Avionics, split into two sub-projects -->
 <article class="project project-2" style="display:block; padding-top:0;">
 
   <!-- Shared header -->
@@ -352,18 +352,15 @@
   <h3 style="margin-bottom:28px;">Rocket Avionics &amp; Control Systems</h3>
 
   <!-- ===== Sub-section A: Analog PID Control ===== -->
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start; padding-bottom:36px;">
-    <!-- Text -->
-    <div>
-      <h4 style="font-size:17px; font-weight:700; margin-bottom:12px; color:var(--teal);">Analog PID Control</h4>
-      <ul>
-        <li>Fully analog PID controller built from discrete components.</li>
-        <li>Simulated in LTSpice, laid out on a custom PCB.</li>
-        <li>Validated 2D state-space stabilization on a self-balancing benchtop platform.</li>
-      </ul>
-    </div>
-    <!-- Two image slots -->
-    <div style="display:flex; flex-direction:column; gap:16px;">
+  <div style="padding-bottom:36px;">
+    <h4 style="font-size:17px; font-weight:700; margin-bottom:12px; color:var(--teal);">Analog PID Control</h4>
+    <ul style="max-width:70ch; margin-bottom:24px;">
+      <li>Fully analog PID controller built from discrete components.</li>
+      <li>Simulated in LTSpice, laid out on a custom PCB.</li>
+      <li>Validated 2D state-space stabilization on a self-balancing benchtop platform.</li>
+    </ul>
+    <!-- Two images side by side -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start;">
       <!-- REPLACE: LTSpice schematic -->
       <img src="assets/PID_LTSpice.png" alt="LTSpice PID controller circuit diagram"
            style="width:100%; height:auto; display:block;">
@@ -379,25 +376,21 @@
   <hr style="border:none; border-top:1px solid var(--line); margin:0 0 36px;">
 
   <!-- ===== Sub-section B: Flight DAQ & State Estimation ===== -->
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start;">
-    <!-- Text -->
-    <div>
-      <h4 style="font-size:17px; font-weight:700; margin-bottom:12px; color:var(--teal);">Flight DAQ &amp; State Estimation</h4>
-      <ul>
-        <li>Arduino-based flight data acquisition with onboard IMU + barometric altimeter.</li>
-        <li>Real-time trajectory tracking during powered flight.</li>
-        <li>Kalman filter over 20+ launch trajectories to reconstruct altitude and velocity profiles.</li>
-      </ul>
-    </div>
-    <!-- Two image slots -->
-    <div style="display:flex; flex-direction:column; gap:16px;">
-      <!-- REPLACE: DAQ photo (rotated 90 deg CCW via CSS — see note) -->
+  <div>
+    <h4 style="font-size:17px; font-weight:700; margin-bottom:12px; color:var(--teal);">Flight DAQ &amp; State Estimation</h4>
+    <ul style="max-width:70ch; margin-bottom:24px;">
+      <li>Arduino-based flight data acquisition with onboard IMU + barometric altimeter.</li>
+      <li>Real-time trajectory tracking during powered flight.</li>
+      <li>Kalman filter over 20+ launch trajectories to reconstruct altitude and velocity profiles.</li>
+    </ul>
+    <!-- Two images side by side -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start;">
+      <!-- REPLACE: DAQ photo -->
       <img src="assets/DAQ.png" alt="Arduino flight DAQ with IMU and barometric altimeter"
            style="width:100%; height:auto; display:block;">
-      <!-- REPLACE: Kalman filter plot / altitude-velocity reconstruction -->
-      <img src="assets/Kalman.png" alt="Kalman filter reconstruction plot"
+      <!-- REPLACE: Kalman filter altitude/velocity plot -->
+      <img src="assets/Kalman.png" alt="Kalman filter altitude and velocity reconstruction from onboard IMU and barometer log"
            style="width:100%; height:auto; display:block;">
-      </div>
     </div>
   </div>
 
