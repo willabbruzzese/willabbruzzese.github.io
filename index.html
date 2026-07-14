@@ -171,9 +171,10 @@
   }
   .about-grid p{ font-size:19px; line-height:1.7; color:var(--ink); max-width:56ch; }
   .about-grid p + p{ margin-top:16px; }
+  .about-grid img{ width:100%; height:auto; display:block; }
   @media (max-width:760px){
     .about-grid{ grid-template-columns:1fr; gap:32px; }
-    .about-grid .ph-3x4{ max-width:320px; }
+    .about-grid img{ max-width:320px; }
   }
 
   /* ---------- PROJECTS ---------- */
@@ -201,6 +202,7 @@
   .project-media{ display:flex; flex-direction:column; gap:16px; }
   @media (max-width:760px){
     .project{ grid-template-columns:1fr; gap:28px; }
+    .project-2{ grid-template-columns:1fr !important; }
   }
 
   /* ---------- FIELD OPERATIONS ---------- */
@@ -307,9 +309,7 @@
         <p>Long-term goal: build the next generation of spacecraft.</p>
       </div>
       <!-- REPLACE: professional headshot -->
-      <img src="assets/Headshot.jpeg" alt="William Abbruzzese" 
-         style="width:100%;height:100%;object-fit:cover;">
-      </div>
+      <img src="assets/Headshot.jpeg" alt="William Abbruzzese">
     </div>
   </div>
 </section>
@@ -345,38 +345,44 @@
     </article>
 
     <!-- Project 2 -->
-<article class="project" style="display:grid; grid-template-columns:1fr 1fr; grid-template-rows:auto auto; gap:24px; align-items:start;">
-  
-  <!-- Top-left: text -->
-  <div>
-    <p class="project-meta">Research · 2025</p>
-    <h3>Rocket Avionics &amp; Control Systems</h3>
-    <ul>
-      <li>Arduino-based flight DAQ with onboard IMU + barometric altimeter.</li>
-      <li>Fully analog PID controller built from discrete components; simulated in LTSpice, custom PCB, validated on a self-balancing benchtop platform.</li>
-      <li>Kalman filter over 20+ launch trajectories to reconstruct altitude/velocity profiles.</li>
-    </ul>
+    <article class="project project-2" style="display:grid; grid-template-columns:1fr 1fr; grid-template-rows:auto auto; gap:24px; align-items:start;">
+
+      <!-- Top-left: text -->
+      <div>
+        <p class="project-meta">Research · 2025</p>
+        <h3>Rocket Avionics &amp; Control Systems</h3>
+        <ul>
+          <li>Arduino-based flight DAQ with onboard IMU + barometric altimeter.</li>
+          <li>Fully analog PID controller built from discrete components; simulated in LTSpice, custom PCB, validated on a self-balancing benchtop platform.</li>
+          <li>Kalman filter over 20+ launch trajectories to reconstruct altitude/velocity profiles.</li>
+        </ul>
+      </div>
+
+      <!-- Top-right: video at its native aspect ratio — no crop, no bars -->
+      <!-- REPLACE: PID / self-balancing platform demo video -->
+      <video controls preload="none" poster="assets/PID_Poster.png"
+             style="width:100%; height:auto; display:block;">
+        <source src="assets/PID.mp4" type="video/mp4">
+      </video>
+
+      <!-- Bottom-left: DAQ photo rotated 90 degrees counter-clockwise, entire image shown -->
+      <!-- REPLACE: DAQ photo -->
+      <div style="width:100%; aspect-ratio:4/3; overflow:hidden; display:flex; align-items:center; justify-content:center; background:var(--bg);">
+        <img src="assets/DAQ.jpeg" alt="Arduino flight DAQ with IMU and barometric altimeter"
+             style="height:100%; width:auto; transform:rotate(-90deg); transform-origin:center;">
+      </div>
+
+      <!-- Bottom-right: LTSpice diagram -->
+      <!-- REPLACE: LTSpice schematic -->
+      <div style="width:100%; aspect-ratio:4/3; overflow:hidden;">
+        <img src="assets/PID_LTSpice.png" alt="LTSpice PID controller circuit diagram"
+             style="width:100%; height:100%; object-fit:cover; object-position:center;">
+      </div>
+
+    </article>
   </div>
+</section>
 
-  <!-- Top-right: video, fills frame, no black bars -->
-  <video controls preload="none" poster="assets/PID_Poster.png"
-         style="width:100%; height:260px; object-fit:cover; display:block;">
-    <source src="assets/PID.mp4" type="video/mp4">
-  </video>
-
-  <!-- Bottom-left: DAQ photo, rotated, cropped from top -->
-  <div style="height:220px; overflow:hidden;">
-    <img src="assets/DAQ.jpeg" alt="Arduino flight DAQ with IMU and barometric altimeter"
-         style="width:100%; height:100%; object-fit:cover; object-position:center top;">
-  </div>
-
-  <!-- Bottom-right: LTSpice, fills frame, no gray bars -->
-  <div style="height:220px; overflow:hidden;">
-    <img src="assets/PID_LTSpice.png" alt="LTSpice PID controller circuit diagram"
-         style="width:100%; height:100%; object-fit:cover; object-position:center;">
-  </div>
-
-</article>
 <!-- ================= FIELD OPERATIONS ================= -->
 <section id="field" class="field">
   <div class="wrap">
