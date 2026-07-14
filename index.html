@@ -344,44 +344,38 @@
       </div>
     </article>
 
-    <!-- Project 2 -->
-    <article class="project project-2" style="display:grid; grid-template-columns:1fr 1fr; grid-template-rows:auto auto; gap:24px; align-items:start;">
+<!-- Project 2 -->
+<article class="project project-2" style="display:grid; grid-template-columns:1fr 1fr; grid-template-rows:auto auto; gap:24px; align-items:start;">
 
-      <!-- Top-left: text -->
-      <div>
-        <p class="project-meta">Research · 2025</p>
-        <h3>Rocket Avionics &amp; Control Systems</h3>
-        <ul>
-          <li>Arduino-based flight DAQ with onboard IMU + barometric altimeter.</li>
-          <li>Fully analog PID controller built from discrete components; simulated in LTSpice, custom PCB, validated on a self-balancing benchtop platform.</li>
-          <li>Kalman filter over 20+ launch trajectories to reconstruct altitude/velocity profiles.</li>
-        </ul>
-      </div>
-
-      <!-- Top-right: video at its native aspect ratio — no crop, no bars -->
-      <!-- REPLACE: PID / self-balancing platform demo video -->
-      <video controls preload="none" poster="assets/PID_Poster.png"
-             style="width:80%; height:auto; display:block;">
-        <source src="assets/PID.mp4" type="video/mp4">
-      </video>
-
-      <!-- Bottom-left: DAQ photo rotated 90 degrees counter-clockwise, entire image shown -->
-      <!-- REPLACE: DAQ photo -->
-      <div style="width:100%; aspect-ratio:4/3; overflow:hidden; display:flex; align-items:center; justify-content:center; background:var(--bg);">
-        <img src="assets/DAQ.jpeg" alt="Arduino flight DAQ with IMU and barometric altimeter"
-             style="height:100%; width:auto; transform:rotate(-90deg); transform-origin:center;">
-      </div>
-
-      <!-- Bottom-right: LTSpice diagram -->
-      <!-- REPLACE: LTSpice schematic -->
-      <div style="width:100%; aspect-ratio:4/3; overflow:hidden;">
-        <img src="assets/PID_LTSpice.png" alt="LTSpice PID controller circuit diagram"
-             style="width:100%; height:100%; object-fit:cover; object-position:center;">
-      </div>
-
-    </article>
+  <!-- Top-left: text -->
+  <div>
+    <p class="project-meta">Research · 2025</p>
+    <h3>Rocket Avionics &amp; Control Systems</h3>
+    <ul>
+      <li>Arduino-based flight DAQ with onboard IMU + barometric altimeter.</li>
+      <li>Fully analog PID controller built from discrete components; simulated in LTSpice, custom PCB, validated on a self-balancing benchtop platform.</li>
+      <li>Kalman filter over 20+ launch trajectories to reconstruct altitude/velocity profiles.</li>
+    </ul>
   </div>
-</section>
+
+  <!-- Top-right: LTSpice diagram, native size -->
+  <!-- REPLACE: LTSpice schematic -->
+  <img src="assets/PID_LTSpice.png" alt="LTSpice PID controller circuit diagram"
+       style="width:100%; height:auto; display:block;">
+
+  <!-- Bottom-left: DAQ photo, native size, rotated 90 degrees counter-clockwise -->
+  <!-- REPLACE: DAQ photo -->
+  <img src="assets/DAQ.jpeg" alt="Arduino flight DAQ with IMU and barometric altimeter"
+       style="width:100%; height:auto; display:block; transform:rotate(-90deg); transform-origin:center;">
+
+  <!-- Bottom-right: video, native size -->
+  <!-- REPLACE: PID / self-balancing platform demo video -->
+  <video controls preload="none" poster="assets/PID_Poster.png"
+         style="width:80%; height:auto; display:block;">
+    <source src="assets/PID.mp4" type="video/mp4">
+  </video>
+
+</article>
 
 <!-- ================= FIELD OPERATIONS ================= -->
 <section id="field" class="field">
