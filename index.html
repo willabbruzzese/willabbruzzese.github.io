@@ -323,13 +323,13 @@
     <!-- Project 1 -->
     <article class="project">
       <div>
-        <p class="project-meta">Founder &amp; Principal Investigator · 2026–present</p>
+        <p class="project-meta">Principal Investigator &amp; Lead Engineer · April 2026–present</p>
         <h3>Autonomous UAV GNC Research</h3>
         <ul>
           <li>$5,000 institutional grant; field-tested with Multnomah County Sheriff's Office SAR in an active pilot program.</li>
           <li>Geometric guidance algorithms (rotating calipers, scanline polygon clipping) for terrain-optimized trajectories — reduced search time 9%.</li>
           <li>Bayesian probabilistic search + Koopman kinematic models updating target zones via Probability of Detection metrics.</li>
-          <li>Three-tier natural-language command parser; validated over 25 autonomous flight tests at 96% command-execution success.</li>
+          <li>Three-tier natural-language command parser; validated over 25 autonomous test flights at 96% command-execution success.</li>
         </ul>
       </div>
       <div class="project-media">
@@ -344,32 +344,64 @@
       </div>
     </article>
 
-<!-- Project 2 -->
-<article class="project project-2" style="display:grid; grid-template-columns:1fr 1fr; grid-template-rows:auto auto; gap:24px; align-items:start;">
+  <!-- Project 2 — Rocket Avionics, split into two sub-projects -->
+<article class="project project-2" style="display:block; padding-top:0;">
 
-  <!-- Top-left: text -->
-  <div>
-    <p class="project-meta">Research · 2025</p>
-    <h3>Rocket Avionics &amp; Control Systems</h3>
-    <ul>
-      <li>Arduino-based flight DAQ with onboard IMU + barometric altimeter.</li>
-      <li>Fully analog PID controller built from discrete components; simulated in LTSpice, custom PCB, validated on a self-balancing benchtop platform.</li>
-      <li>Kalman filter over 20+ launch trajectories to reconstruct altitude/velocity profiles.</li>
-    </ul>
+  <!-- Shared header -->
+  <p class="project-meta">Research · 2025</p>
+  <h3 style="margin-bottom:28px;">Rocket Avionics &amp; Control Systems</h3>
+
+  <!-- ===== Sub-section A: Analog PID Control ===== -->
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start; padding-bottom:36px;">
+    <!-- Text -->
+    <div>
+      <h4 style="font-size:17px; font-weight:700; margin-bottom:12px; color:var(--teal);">Analog PID Control</h4>
+      <ul>
+        <li>Fully analog PID controller built from discrete components.</li>
+        <li>Simulated in LTSpice, laid out on a custom PCB.</li>
+        <li>Validated 2D state-space stabilization on a self-balancing benchtop platform.</li>
+      </ul>
+    </div>
+    <!-- Two image slots -->
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <!-- REPLACE: LTSpice schematic -->
+      <img src="assets/PID_LTSpice.png" alt="LTSpice PID controller circuit diagram"
+           style="width:100%; height:auto; display:block;">
+      <!-- REPLACE: self-balancing platform demo video -->
+      <video controls preload="none" poster="assets/PID_Poster.png"
+             style="width:100%; height:auto; display:block;">
+        <source src="assets/PID.mp4" type="video/mp4">
+      </video>
+    </div>
   </div>
-  <!-- Top-right: video, native size -->
-  <!-- REPLACE: PID / self-balancing platform demo video -->
-  <video controls preload="none" poster="assets/PID_Poster.png"
-         style="width:65%; height:auto; display:block;">
-    <source src="assets/PID.mp4" type="video/mp4">
-  </video>
-    <!-- Bottom-right: LTSpice diagram, native size -->
-  <!-- REPLACE: LTSpice schematic -->
-  <img src="assets/PID_LTSpice.png" alt="LTSpice PID controller circuit diagram"
-       style="width:100%; height:auto; display:block;">
+
+  <!-- Divider between sub-sections -->
+  <hr style="border:none; border-top:1px solid var(--line); margin:0 0 36px;">
+
+  <!-- ===== Sub-section B: Flight DAQ & State Estimation ===== -->
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start;">
+    <!-- Text -->
+    <div>
+      <h4 style="font-size:17px; font-weight:700; margin-bottom:12px; color:var(--teal);">Flight DAQ &amp; State Estimation</h4>
+      <ul>
+        <li>Arduino-based flight data acquisition with onboard IMU + barometric altimeter.</li>
+        <li>Real-time trajectory tracking during powered flight.</li>
+        <li>Kalman filter over 20+ launch trajectories to reconstruct altitude and velocity profiles.</li>
+      </ul>
+    </div>
+    <!-- Two image slots -->
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <!-- REPLACE: DAQ photo (rotated 90 deg CCW via CSS — see note) -->
+      <img src="assets/DAQ.jpeg" alt="Arduino flight DAQ with IMU and barometric altimeter"
+           style="width:100%; height:auto; display:block;">
+      <!-- REPLACE: Kalman filter plot / altitude-velocity reconstruction -->
+      <img src="assets/Kalman.png" alt="Kalman filter reconstruction plot"
+           style="width:100%; height:auto; display:block;">
+      </div>
+    </div>
+  </div>
 
 </article>
-
 <!-- ================= FIELD OPERATIONS ================= -->
 <section id="field" class="field">
   <div class="wrap">
