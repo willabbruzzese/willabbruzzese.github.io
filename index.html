@@ -10,10 +10,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:        #F7F6F2;   /* off-white */
-    --ink:       #17191B;   /* near-black */
+    --bg:         #F7F6F2;   /* off-white */
+    --ink:        #17191B;   /* near-black */
     --ink-soft:  #4A4F53;   /* secondary text */
-    --teal:      #1E6A63;   /* dark matte teal accent */
+    --teal:       #1E6A63;   /* dark matte teal accent */
     --teal-deep: #14504B;   /* hover state */
     --line:      #DDDBD3;   /* hairline rules */
     --ph-bg:     #ECEAE4;   /* placeholder background */
@@ -285,7 +285,6 @@
 </head>
 <body>
 
-<!-- ================= NAV ================= -->
 <nav class="nav" aria-label="Primary">
   <div class="wrap nav-inner">
     <a class="nav-name" href="#top">W. Abbruzzese</a>
@@ -299,9 +298,7 @@
   </div>
 </nav>
 
-<!-- ================= HERO ================= -->
 <header class="hero" id="top">
-  <!-- REPLACE: hero background -->
   <div class="ph ph-hero" role="img" aria-label="Placeholder: full-bleed hero background — drone in flight or mountain terrain">
     <span>[[IMAGE: full-bleed hero background — drone in flight or mountain terrain]]</span>
   </div>
@@ -311,13 +308,10 @@
     <p class="hero-tag">Physics @ Colorado College &nbsp;·&nbsp; Autonomous flight systems</p>
     <div class="hero-actions">
       <a class="btn btn-accent" href="mailto:w_abbruzzese2024@coloradocollege.edu">Email</a>
-      <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a><!-- REPLACE: LinkedIn profile URL -->
-      <a class="btn" href="#" target="_blank" rel="noopener">Resume (PDF)</a><!-- REPLACE: resume PDF link -->
-    </div>
+      <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a><a class="btn" href="#" target="_blank" rel="noopener">Resume (PDF)</a></div>
   </div>
 </header>
 
-<!-- telemetry strip: hard numbers up front -->
 <div class="telemetry" aria-label="Key figures">
   <div class="wrap telemetry-inner">
     <div class="tele-item"><span class="tele-num">3.97</span><span class="tele-label">GPA · Physics</span></div>
@@ -327,7 +321,6 @@
   </div>
 </div>
 
-<!-- ================= ABOUT ================= -->
 <section id="about">
   <div class="wrap">
     <p class="eyebrow">About</p>
@@ -335,19 +328,16 @@
       <div>
         <p>Junior physics student (GPA 3.97) building autonomous UAV guidance systems. Former wilderness search-and-rescue team leader with 1,000+ operational hours as a 911 first responder.</p>
       </div>
-      <!-- REPLACE: professional headshot -->
       <img src="assets/Headshot.jpeg" alt="William Abbruzzese">
     </div>
   </div>
 </section>
 
-<!-- ================= PROJECTS ================= -->
 <section id="projects">
   <div class="wrap">
     <p class="eyebrow">Projects</p>
     <h2>Research &amp; engineering</h2>
 
-    <!-- Project 1 -->
     <article class="project">
       <div>
         <p class="project-meta">Principal Investigator &amp; Lead Engineer · April 2026–present</p>
@@ -360,27 +350,21 @@
         </ul>
       </div>
       <div class="project-media">
-        <!-- REPLACE: drone autonomous flight test footage -->
         <div class="ph ph-16x9" role="img" aria-label="Placeholder: drone autonomous flight test footage">
           <span>[[VIDEO: drone autonomous flight test footage]]</span>
         </div>
-        <!-- REPLACE: drone hardware close-up -->
         <div class="ph ph-16x9" role="img" aria-label="Placeholder: drone hardware close-up">
           <span>[[IMAGE: drone hardware close-up]]</span>
         </div>
       </div>
     </article>
 
-    <!-- Project 2 — Rocket Avionics, split into two sub-projects with slideshows -->
     <article class="project project-2" style="display:block; padding-top:0;">
 
-      <!-- Shared header -->
       <p class="project-meta">Research · 2025</p>
       <h3 style="margin-bottom:28px;">Rocket Avionics &amp; Control Systems</h3>
 
-      <!-- ===== Sub-section A: Analog PID Control ===== -->
       <div class="subproject-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:center; padding-bottom:36px;">
-        <!-- Text left -->
         <div>
           <h4 style="font-size:17px; font-weight:700; margin-bottom:12px; color:var(--teal);">Analog PID Control</h4>
           <ul>
@@ -389,16 +373,13 @@
             <li>Validated 2D state-space stabilization on a self-balancing benchtop platform.</li>
           </ul>
         </div>
-        <!-- Slideshow right -->
         <div class="slideshow" data-slideshow>
-          <!-- REPLACE: self-balancing platform demo video -->
-          <div class="slide">
+          <div class="slide active">
             <video controls preload="none" poster="assets/PID_Poster.png">
               <source src="assets/PID.mp4" type="video/mp4">
             </video>
           </div>
-          <!-- REPLACE: LTSpice schematic -->
-          <div class="slide active">
+          <div class="slide">
             <img src="assets/PID_LTSpice.png" alt="LTSpice PID controller circuit diagram">
           </div>
           <button class="slide-arrow prev" aria-label="Previous slide">&#8249;</button>
@@ -408,12 +389,9 @@
         </div>
       </div>
 
-      <!-- Divider between sub-sections -->
       <hr style="border:none; border-top:1px solid var(--line); margin:0 0 36px;">
 
-      <!-- ===== Sub-section B: Flight DAQ & State Estimation ===== -->
       <div class="subproject-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:center;">
-        <!-- Text left -->
         <div>
           <h4 style="font-size:17px; font-weight:700; margin-bottom:12px; color:var(--teal);">Flight DAQ &amp; State Estimation</h4>
           <ul>
@@ -422,14 +400,11 @@
             <li>Kalman filter over 20+ launch trajectories to reconstruct altitude and velocity profiles.</li>
           </ul>
         </div>
-        <!-- Slideshow right -->
         <div class="slideshow" data-slideshow>
-          <!-- REPLACE: Kalman filter altitude/velocity plot -->
-          <div class="slide">
+          <div class="slide active">
             <img src="assets/Kalman.png" alt="Kalman filter altitude and velocity reconstruction from onboard IMU and barometer log">
           </div>
-          <!-- REPLACE: DAQ photo -->
-          <div class="slide active">
+          <div class="slide">
             <img src="assets/DAQ.png" alt="Arduino flight DAQ with IMU and barometric altimeter">
           </div>
           <button class="slide-arrow prev" aria-label="Previous slide">&#8249;</button>
@@ -443,7 +418,6 @@
   </div>
 </section>
 
-<!-- ================= FIELD OPERATIONS ================= -->
 <section id="field" class="field">
   <div class="wrap">
     <p class="eyebrow">Field Operations</p>
@@ -457,14 +431,12 @@
           <li>Highest-ranked Team Leader; coordinated training and multi-team field operations.</li>
         </ul>
       </div>
-      <!-- REPLACE: SAR field operation photo -->
       <img src="assets/SAR.jpeg" alt="SAR field operation in mountain terrain"
            style="width:100%; height:auto; display:block;">
     </div>
   </div>
 </section>
 
-<!-- ================= SKILLS ================= -->
 <section id="skills">
   <div class="wrap">
     <p class="eyebrow">Skills</p>
@@ -490,7 +462,6 @@
   </div>
 </section>
 
-<!-- ================= CONTACT ================= -->
 <section id="contact" class="contact">
   <div class="wrap">
     <p class="eyebrow">Contact</p>
@@ -498,13 +469,11 @@
     <p>Open to research collaborations, internships, and conversations about autonomous flight.</p>
     <div class="contact-links">
       <a class="btn btn-accent" href="mailto:w_abbruzzese2024@coloradocollege.edu">w_abbruzzese2024@coloradocollege.edu</a>
-      <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a><!-- REPLACE: LinkedIn profile URL -->
-      <a class="btn" href="https://github.com/willabbruzzese" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a><a class="btn" href="https://github.com/willabbruzzese" target="_blank" rel="noopener">GitHub</a>
     </div>
   </div>
 </section>
 
-<!-- ================= FOOTER ================= -->
 <footer>
   <div class="wrap">
     <span>© 2026 William Abbruzzese</span>
