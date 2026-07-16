@@ -13,8 +13,8 @@
     --bg:         #F7F6F2;   /* off-white */
     --ink:        #17191B;   /* near-black */
     --ink-soft:  #4A4F53;   /* secondary text */
-    --teal:       #1E6A63;   /* dark matte teal accent */
-    --teal-deep: #14504B;   /* hover state */
+    --teal:       #28687f;   /* dark matte teal accent */
+    --teal-deep: #1d5562;   /* hover state */
     --line:      #DDDBD3;   /* hairline rules */
     --ph-bg:     #ECEAE4;   /* placeholder background */
     --ph-border: #B9B6AC;   /* placeholder dashed border */
@@ -42,7 +42,7 @@
   a:hover{ color:var(--teal-deep); text-decoration:underline; text-underline-offset:3px; }
   a:focus-visible, button:focus-visible{ outline:2px solid var(--teal); outline-offset:3px; border-radius:2px; }
 
-  .wrap{ max-width:1040px; margin:0 auto; padding:0 24px; }
+  .wrap{ max-width:1280px; margin:0 auto; padding:0 32px; }
 
   /* ---------- NAV ---------- */
   .nav{
@@ -94,6 +94,16 @@
     display:flex; align-items:flex-end;
     border-bottom:1px solid var(--line);
     overflow:hidden;
+  }
+  .hero-bg{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit:cover; object-position:center;
+    z-index:0;
+  }
+  .hero::after{
+    content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+    background:linear-gradient(to top, rgba(247,246,242,0.94) 0%, rgba(247,246,242,0.55) 42%, rgba(247,246,242,0.1) 72%, transparent 100%);
   }
   .hero-content{
     position:relative; z-index:2;
@@ -167,10 +177,10 @@
 
   /* ---------- ABOUT ---------- */
   .about-grid{
-    display:grid; grid-template-columns:1.6fr 1fr; gap:48px; align-items:start;
+    display:grid; grid-template-columns:1.6fr 1fr; gap:48px; align-items:center;
   }
-  .about-grid p{ font-size:19px; line-height:1.7; color:var(--ink); max-width:56ch; }
-  .about-grid p + p{ margin-top:16px; }
+  .about-grid .about-body{ font-size:19px; line-height:1.7; color:var(--ink); max-width:56ch; }
+  .about-grid .about-body + .about-body{ margin-top:16px; }
   .about-grid img{ width:100%; height:auto; display:block; }
   @media (max-width:760px){
     .about-grid{ grid-template-columns:1fr; gap:32px; }
@@ -207,18 +217,19 @@
   }
 
   /* ---------- SLIDESHOW ---------- */
-  .slideshow{ position:relative; width:100%; background:var(--ph-bg); }
+  .slideshow{ position:relative; width:100%; background:transparent; }
   .slide{ display:none; width:100%; }
   .slide.active{ display:block; }
   .slide img, .slide video{ width:100%; height:auto; display:block; }
   .slide-arrow{
     position:absolute; top:50%; transform:translateY(-50%);
-    background:rgba(23,25,27,0.62); color:#fff; border:none;
+    background:rgba(190, 190, 190, 0.92); color:var(--ink); border:none;
     width:38px; height:38px; cursor:pointer; font-size:18px; line-height:1;
     display:flex; align-items:center; justify-content:center;
-    transition:background-color .15s ease; z-index:3;
+    transition:background-color .15s ease, box-shadow .15s ease; z-index:3;
+    box-shadow:0 1px 6px rgba(0,0,0,0.55);
   }
-  .slide-arrow:hover{ background:rgba(23,25,27,0.9); }
+  .slide-arrow:hover{ background:#fff; box-shadow:0 2px 8px rgba(0,0,0,0.65); }
   .slide-arrow.prev{ left:10px; }
   .slide-arrow.next{ right:10px; }
   .slide-dots{ display:flex; gap:8px; justify-content:center; margin-top:12px; }
@@ -231,6 +242,64 @@
     position:absolute; bottom:10px; right:12px; z-index:3;
     font-family:var(--mono); font-size:11px; letter-spacing:0.05em;
     color:#fff; background:rgba(23,25,27,0.62); padding:3px 8px;
+  }
+  .slide-caption{
+    font-family:var(--mono); font-size:12px; letter-spacing:0.04em;
+    color:var(--ink-soft); background:var(--bg);
+    padding:10px 12px; border-top:1px solid var(--line);
+  }
+
+  /* ---------- OBSERVATIONS ---------- */
+  .obs-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:stretch;
+  }
+  .obs-col{ display:flex; flex-direction:column; }
+  .obs-col-end{ align-items:flex-end; }
+  /* Right column: title + copy + photo share the photo's left edge, flush to the right */
+  .obs-col-end .obs-stack{
+    display:flex; flex-direction:column;
+    width:fit-content; max-width:100%; height:100%;
+  }
+  .obs-col-end .obs-desc{
+    width:0; min-width:100%; max-width:none;
+  }
+  .obs-col h3{
+    font-size:17px; font-weight:700; letter-spacing:-0.01em;
+    color:var(--teal); margin-bottom:12px;
+  }
+  .obs-desc{
+    font-size:16px; line-height:1.7; color:var(--ink);
+    max-width:48ch; margin-bottom:20px;
+  }
+  /* Shrink-wrap to the image so arrows/caption/dots share the same width */
+  .obs-col .slideshow{
+    margin-top:auto;
+    width:fit-content; max-width:100%;
+    background:var(--bg); --obs-img-h:480px;
+  }
+  .obs-col .slide{ width:auto; }
+  /* Fixed height, auto width: same height in both columns, native aspect ratio, no cropping */
+  .obs-col .slide img{
+    height:var(--obs-img-h); width:auto; max-width:100%;
+    display:block;
+  }
+  /* Caption tracks image width (doesn't widen the slideshow) */
+  .obs-col .slide-caption{
+    width:0; min-width:100%; box-sizing:border-box;
+    min-height:60px;
+  }
+  /* Center arrows / counter on the image (not the caption/dots) */
+  .obs-col .slide-arrow{ top:calc(var(--obs-img-h) / 2); }
+  .obs-col .slide-counter{ bottom:auto; top:calc(var(--obs-img-h) - 28px); }
+  @media (max-width:760px){
+    .obs-grid{ grid-template-columns:1fr; gap:40px; }
+    .obs-col-end{ align-items:stretch; }
+    .obs-col .slideshow{ margin-top:0; width:100%; }
+    .obs-col .slide{ width:100%; }
+    .obs-col .slide img{ height:auto; width:100%; }
+    .obs-col .slide-caption{ width:auto; min-width:0; }
+    .obs-col .slide-arrow{ top:50%; }
+    .obs-col .slide-counter{ top:auto; bottom:10px; }
   }
 
   /* ---------- FIELD OPERATIONS ---------- */
@@ -293,22 +362,21 @@
       <li><a href="#projects">Projects</a></li>
       <li><a href="#field">Field Ops</a></li>
       <li class="hide-sm"><a href="#skills">Skills</a></li>
+      <li class="hide-sm"><a href="#observations">Deep Space</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
 </nav>
 
 <header class="hero" id="top">
-  <div class="ph ph-hero" role="img" aria-label="Placeholder: full-bleed hero background — drone in flight or mountain terrain">
-    <span>[[IMAGE: full-bleed hero background — drone in flight or mountain terrain]]</span>
-  </div>
+  <img class="hero-bg" src="assets/hover.jpg" alt="" aria-hidden="true">
   <div class="wrap hero-content">
-    <p class="hero-coords">45.56025° N, 122.17220° W — Columbia River Gorge, OR</p>
+    <p class="hero-coords">45.53983° N, 122.24146° W — Columbia River Gorge, OR</p>
     <h1>William Abbruzzese</h1>
     <p class="hero-tag">Physics @ Colorado College &nbsp;·&nbsp; Autonomous flight systems</p>
     <div class="hero-actions">
       <a class="btn btn-accent" href="mailto:w_abbruzzese2024@coloradocollege.edu">Email</a>
-      <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a><a class="btn" href="#" target="_blank" rel="noopener">Resume (PDF)</a></div>
+      <a class="btn" href="https://www.linkedin.com/in/william-abbruzzese" target="_blank" rel="noopener">LinkedIn</a><a class="btn" href="#" target="_blank" rel="noopener">Resume (PDF)</a></div>
   </div>
 </header>
 
@@ -323,10 +391,10 @@
 
 <section id="about">
   <div class="wrap">
-    <p class="eyebrow">About</p>
     <div class="about-grid">
       <div>
-        <p>Junior physics student (GPA 3.97) building autonomous UAV guidance systems. Former wilderness search-and-rescue team leader with 1,000+ operational hours as a 911 first responder.</p>
+        <p class="eyebrow">About</p>
+        <p class="about-body">Junior physics student building autonomous UAV guidance systems. I spent nearly four years as a wilderness search-and-rescue team leader in Multnomah County, where drone support was routinely lagging behind search operations. Most of what I build now is aimed at that gap; guidance and natural-language control that let the person running the search operate the aircraft themselves. It's the same problem I want to work on at greater distance and larger scale through the design of spacecraft systems.</p>
       </div>
       <img src="assets/Headshot.jpg" alt="William Abbruzzese">
     </div>
@@ -336,7 +404,7 @@
 <section id="projects">
   <div class="wrap">
     <p class="eyebrow">Projects</p>
-    <h2>Research &amp; engineering</h2>
+    <h2>Research &amp; Engineering</h2>
 
     <article class="project">
       <div>
@@ -359,7 +427,7 @@
       </div>
     </article>
 
-    <article class="project project-2" style="display:block; padding-top:0;">
+    <article class="project project-2" style="display:block; padding-top:48px;">
 
       <p class="project-meta">Research · 2025</p>
       <h3 style="margin-bottom:28px;">Rocket Avionics &amp; Control Systems</h3>
@@ -382,6 +450,12 @@
           <div class="slide">
             <img src="assets/PID_LTSpice.png" alt="LTSpice PID controller circuit diagram">
           </div>
+          <div class="slide">
+            <img src="assets/pulse.png" alt="LTSpice PID controller pulse response simulation">
+          </div>
+          <div class="slide">
+            <img src="assets/zoomed.png" alt="LTSpice PID controller zoomed-in response simulation">
+          </div>
           <button class="slide-arrow prev" aria-label="Previous slide">&#8249;</button>
           <button class="slide-arrow next" aria-label="Next slide">&#8250;</button>
           <span class="slide-counter"></span>
@@ -402,10 +476,10 @@
         </div>
         <div class="slideshow" data-slideshow>
           <div class="slide active">
-            <img src="assets/Kalman.png" alt="Kalman filter altitude and velocity reconstruction from onboard IMU and barometer log">
+            <img src="assets/DAQ.jpg" alt="Arduino flight DAQ with IMU and barometric altimeter">
           </div>
           <div class="slide">
-            <img src="assets/DAQ.png" alt="Arduino flight DAQ with IMU and barometric altimeter">
+            <img src="assets/Kalman.png" alt="Kalman filter altitude and velocity reconstruction from onboard IMU and barometer log">
           </div>
           <button class="slide-arrow prev" aria-label="Previous slide">&#8249;</button>
           <button class="slide-arrow next" aria-label="Next slide">&#8250;</button>
@@ -424,7 +498,7 @@
     <h2>Multnomah County Search &amp; Rescue</h2>
     <div class="field-grid">
       <div>
-        <p class="field-framing">Real operational leadership where failure had consequences.</p>
+        <p class="field-framing">Operational leadership</p>
         <ul>
           <li>Team Leader, 2021–2024 — directed 10–15 person teams in high-pressure wilderness environments.</li>
           <li>1,000+ hours as a 911 wilderness first responder locating and assisting missing or injured individuals across Oregon.</li>
@@ -462,14 +536,67 @@
   </div>
 </section>
 
+<section id="observations">
+  <div class="wrap">
+    <p class="eyebrow">Observations</p>
+    <h2>Deep Space</h2>
+    <p style="font-size:19px; line-height:1.7; color:var(--ink); max-width:55ch; margin-bottom:34px;">When the sky's clear, I track and image objects in orbit and deep space — from spacecraft on the move to static deep-sky targets.</p>
+
+    <div class="obs-grid">
+      <div class="obs-col">
+        <h3>Artemis II — Orion</h3>
+        <p class="obs-desc">These frames follow Orion during Artemis II's trans-Earth coast, tracked using ephemeris data from NASA's Horizons System and TheSkyX.</p>
+        <div class="slideshow" data-slideshow>
+          <div class="slide active">
+            <img src="assets/first.jpg" alt="Orion capsule, Artemis II, trans-Earth coast">
+            <div class="slide-caption">Orion, Artemis II — trans-Earth coast, 2026 Apr 8, 10:47 UTC</div>
+          </div>
+          <div class="slide">
+            <img src="assets/second.jpg" alt="Orion capsule, Artemis II, trans-Earth coast">
+            <div class="slide-caption">Orion, Artemis II — trans-Earth coast, 2026 Apr 8, 10:50 UTC</div>
+          </div>
+          <div class="slide">
+            <img src="assets/third.jpg" alt="Orion capsule, Artemis II, trans-Earth coast">
+            <div class="slide-caption">Orion, Artemis II — trans-Earth coast, 2026 Apr 8, 10:53 UTC</div>
+          </div>
+          <button class="slide-arrow prev" aria-label="Previous slide">&#8249;</button>
+          <button class="slide-arrow next" aria-label="Next slide">&#8250;</button>
+          <span class="slide-counter"></span>
+          <div class="slide-dots"></div>
+        </div>
+      </div>
+
+      <div class="obs-col obs-col-end">
+        <div class="obs-stack">
+          <h3>Lunar &amp; Deep Space</h3>
+          <p class="obs-desc">The Moon is a mosaic of short exposures stacked to beat atmospheric seeing and sharpen crater detail along the terminator. The Ring Nebula (M57) is a color composite integrated over several hours to pull faint shell structure out of the sky background.</p>
+          <div class="slideshow" data-slideshow>
+            <div class="slide active">
+              <img src="assets/moon.png" alt="Half Moon, compiled exposure">
+              <div class="slide-caption">Half Moon, compiled exposure</div>
+            </div>
+            <div class="slide">
+              <img src="assets/ring.png" alt="Ring Nebula (M57), color composite">
+              <div class="slide-caption">Ring Nebula (M57), color composite</div>
+            </div>
+            <button class="slide-arrow prev" aria-label="Previous slide">&#8249;</button>
+            <button class="slide-arrow next" aria-label="Next slide">&#8250;</button>
+            <span class="slide-counter"></span>
+            <div class="slide-dots"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="contact" class="contact">
   <div class="wrap">
     <p class="eyebrow">Contact</p>
     <h2>Get in touch</h2>
-    <p>Open to research collaborations, internships, and conversations about autonomous flight.</p>
     <div class="contact-links">
       <a class="btn btn-accent" href="mailto:w_abbruzzese2024@coloradocollege.edu">w_abbruzzese2024@coloradocollege.edu</a>
-      <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a><a class="btn" href="https://github.com/willabbruzzese" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/william-abbruzzese" target="_blank" rel="noopener">LinkedIn</a>
     </div>
   </div>
 </section>
@@ -532,4 +659,3 @@
 </script>
 
 </body>
-</html>
