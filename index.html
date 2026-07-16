@@ -13,8 +13,8 @@
     --bg:         #F7F6F2;   /* off-white */
     --ink:        #17191B;   /* near-black */
     --ink-soft:  #4A4F53;   /* secondary text */
-    --teal:       #28687f;   /* dark matte teal accent */
-    --teal-deep: #1d5562;   /* hover state */
+    --teal:       #3779a9;   /* dark matte teal accent */
+    --teal-deep: #2a6994;   /* hover state */
     --line:      #DDDBD3;   /* hairline rules */
     --ph-bg:     #ECEAE4;   /* placeholder background */
     --ph-border: #B9B6AC;   /* placeholder dashed border */
@@ -53,16 +53,16 @@
   }
   .nav-inner{
     display:flex; align-items:center; justify-content:space-between;
-    height:56px;
+    height:75px;
   }
   .nav-name{
-    font-family:var(--mono); font-size:13px; font-weight:600;
+    font-family:var(--mono); font-size:17px; font-weight:600;
     letter-spacing:0.06em; color:var(--ink); text-transform:uppercase;
   }
   .nav-name:hover{ color:var(--teal); text-decoration:none; }
-  .nav-links{ display:flex; gap:22px; list-style:none; }
+  .nav-links{ display:flex; gap:28px; list-style:none; }
   .nav-links a{
-    font-family:var(--mono); font-size:12px; letter-spacing:0.05em;
+    font-family:var(--mono); font-size:16px; letter-spacing:0.05em;
     color:var(--ink-soft); text-transform:uppercase;
   }
   .nav-links a:hover{ color:var(--teal); text-decoration:none; }
@@ -111,8 +111,15 @@
     width:100%;
   }
   .hero-coords{
-    font-family:var(--mono); font-size:12px; letter-spacing:0.08em;
-    color:var(--teal); margin-bottom:18px; text-transform:uppercase;
+    position:absolute; z-index:2;
+    right:56px; bottom:20px;
+    margin:0;
+    font-family:var(--mono); font-size:12px; font-weight:600; letter-spacing:0.08em;
+    color:var(--teal-deep); text-transform:uppercase;
+    text-shadow:
+      0 0 10px rgba(247,246,242,1),
+      0 0 4px rgba(247,246,242,1),
+      0 1px 2px rgba(247,246,242,0.95);
   }
   .hero h1{
     font-size:clamp(38px, 6.5vw, 68px);
@@ -336,7 +343,7 @@
   @media (max-width:640px){ .skills-grid{ grid-template-columns:1fr; } }
 
   /* ---------- CONTACT ---------- */
-  .contact p{ font-size:19px; color:var(--ink-soft); margin-bottom:28px; max-width:52ch; }
+  .contact p:not(.eyebrow){ font-size:19px; color:var(--ink-soft); margin-bottom:28px; max-width:52ch; }
   .contact-links{ display:flex; flex-wrap:wrap; gap:12px; }
 
   /* ---------- FOOTER ---------- */
@@ -359,10 +366,10 @@
     <a class="nav-name" href="#top">William Abbruzzese</a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
-      <li><a href="#projects">Projects</a></li>
+      <li><a href="#projects">Research</a></li>
       <li><a href="#field">Field Ops</a></li>
       <li class="hide-sm"><a href="#skills">Skills</a></li>
-      <li class="hide-sm"><a href="#observations">Deep Space</a></li>
+      <li class="hide-sm"><a href="#observations">Space</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
@@ -370,10 +377,10 @@
 
 <header class="hero" id="top">
   <img class="hero-bg" src="assets/hover.jpg" alt="" aria-hidden="true">
+  <p class="hero-coords">45.53983° N, 122.24146° W — Columbia River Gorge, OR</p>
   <div class="wrap hero-content">
-    <p class="hero-coords">45.53983° N, 122.24146° W — Columbia River Gorge, OR</p>
     <h1>William Abbruzzese</h1>
-    <p class="hero-tag">Physics @ Colorado College &nbsp;·&nbsp; Autonomous flight systems</p>
+    <p class="hero-tag">Physics &nbsp;·&nbsp; Colorado College &nbsp;·&nbsp; Autonomous flight systems</p>
     <div class="hero-actions">
       <a class="btn btn-accent" href="mailto:w_abbruzzese2024@coloradocollege.edu">Email</a>
       <a class="btn" href="https://www.linkedin.com/in/william-abbruzzese" target="_blank" rel="noopener">LinkedIn</a><a class="btn" href="#" target="_blank" rel="noopener">Resume (PDF)</a></div>
@@ -383,8 +390,8 @@
 <div class="telemetry" aria-label="Key figures">
   <div class="wrap telemetry-inner">
     <div class="tele-item"><span class="tele-num">3.97</span><span class="tele-label">GPA · Physics</span></div>
+    <div class="tele-item"><span class="tele-num">$5,000</span><span class="tele-label">Research Grant</span></div>
     <div class="tele-item"><span class="tele-num">25</span><span class="tele-label">Autonomous flight tests</span></div>
-    <div class="tele-item"><span class="tele-num">96%</span><span class="tele-label">Command-execution success</span></div>
     <div class="tele-item"><span class="tele-num">1,000+</span><span class="tele-label">SAR operational hours</span></div>
   </div>
 </div>
@@ -403,15 +410,22 @@
 
 <section id="projects">
   <div class="wrap">
-    <p class="eyebrow">Projects</p>
-    <h2>Research &amp; Engineering</h2>
+    <p class="eyebrow">Research</p>
 
     <article class="project">
       <div>
-        <p class="project-meta">Principal Investigator &amp; Lead Engineer · April 2026–present</p>
-        <h3>Autonomous UAV GNC Research</h3>
+        <h3 style="margin-bottom:4px;">Autonomous UAV GNC Research</h3>
+        <p class="project-meta" style="margin-top:0; margin-bottom:14px;">Principal Investigator &amp; Lead Engineer · April 2026–present</p>
+
+        <h4 style="font-size:17px; font-weight:700; margin:8px 0 12px; color:var(--teal);">Platform &amp; Operator Interface</h4>
         <ul>
           <li>$5,000 institutional grant; field-tested with Multnomah County Sheriff's Office SAR in an active pilot program.</li>
+          <li>Built the aircraft from the airframe up — Pixhawk 6C flight controller, M10 GPS, 915 MHz SiK telemetry, modified X500 V2 frame; handled power distribution, ESC/motor integration, and airframe assembly.</li>
+          <li>Built the operator-facing UI with live map, voice input, mission log, touch-based search-area definition, and real-time telemetry over a MAVLink pipeline to the flight controller.</li>
+        </ul>
+
+        <h4 style="font-size:17px; font-weight:700; margin:28px 0 12px; color:var(--teal);">Guidance &amp; Autonomy</h4>
+        <ul>
           <li>Geometric guidance algorithms (rotating calipers, scanline polygon clipping) for terrain-optimized trajectories — reduced search time 9%.</li>
           <li>Bayesian probabilistic search + Koopman kinematic models updating target zones via Probability of Detection metrics.</li>
           <li>Three-tier natural-language command parser; validated over 25 autonomous test flights at 96% command-execution success.</li>
@@ -436,9 +450,10 @@
         <div>
           <h4 style="font-size:17px; font-weight:700; margin-bottom:12px; color:var(--teal);">Analog PID Control</h4>
           <ul>
-            <li>Fully analog PID controller built from discrete components.</li>
-            <li>Simulated in LTSpice, laid out on a custom PCB.</li>
-            <li>Validated 2D state-space stabilization on a self-balancing benchtop platform.</li>
+            <li>Fully analog PID controller built from discrete op-amps and passives. No microcontroller in the loop, every term realized in hardware.</li>
+            <li>Designed and simulated the circuit in LTSpice, tuning proportional and derivative stages against the plant response before committing to hardware.</li>
+            <li>Bench-validated 2D state-space stabilization on a self-balancing platform, then laying out a custom PCB.</li>
+            <li>Doing it in analog forces the control theory into physical components</li>
           </ul>
         </div>
         <div class="slideshow" data-slideshow>
@@ -469,9 +484,10 @@
         <div>
           <h4 style="font-size:17px; font-weight:700; margin-bottom:12px; color:var(--teal);">Flight DAQ &amp; State Estimation</h4>
           <ul>
-            <li>Arduino-based flight data acquisition with onboard IMU + barometric altimeter.</li>
-            <li>Real-time trajectory tracking during powered flight.</li>
-            <li>Kalman filter over 20+ launch trajectories to reconstruct altitude and velocity profiles.</li>
+            <li>Arduino-based flight data acquisition payload with onboard IMU and barometric altimeter, logging through boost, coast, and recovery.</li>
+            <li>Flew the payload on an Estes Bull Pup out of Colorado Springs (1,840 m field elevation), capturing motor burn, apogee, and ejection events in the raw telemetry.</li>
+            <li>Fused barometer and accelerometer channels through a Kalman filter to reject high-frequency structural noise and reconstruct altitude and velocity profiles — resolving apogee at 226 m, 7.2 s after ignition.</li>
+            <li>Post-flight analysis in MATLAB and Python across 20+ launch and test launch trajectories</li>
           </ul>
         </div>
         <div class="slideshow" data-slideshow>
@@ -526,7 +542,7 @@
       </div>
       <div class="skill-cell">
         <h3>Tools</h3>
-        <p>SolidWorks, LTSpice, Altium, lab instrumentation</p>
+        <p>SolidWorks, LTSpice, Altium, TheSkyX, Lab Instrumentation</p>
       </div>
       <div class="skill-cell">
         <h3>Languages</h3>
@@ -538,14 +554,14 @@
 
 <section id="observations">
   <div class="wrap">
-    <p class="eyebrow">Observations</p>
-    <h2>Deep Space</h2>
-    <p style="font-size:19px; line-height:1.7; color:var(--ink); max-width:55ch; margin-bottom:34px;">When the sky's clear, I track and image objects in orbit and deep space — from spacecraft on the move to static deep-sky targets.</p>
+    <p class="eyebrow">Space</p>
+    <h2>Telescope Observations</h2>
+    <p style="font-size:19px; line-height:1.7; color:var(--ink); max-width:55ch; margin-bottom:34px;">Using a DFM Engineering 16-inch Cassegrain telescope on a computerized equatorial fork mount, I track and image everything from spacecrafts on the move to static deep-sky nebula.</p>
 
     <div class="obs-grid">
       <div class="obs-col">
-        <h3>Artemis II — Orion</h3>
-        <p class="obs-desc">These frames follow Orion during Artemis II's trans-Earth coast, tracked using ephemeris data from NASA's Horizons System and TheSkyX.</p>
+        <h3>Artemis II — Orion Spacecraft</h3>
+        <p class="obs-desc">These frames follow Orion during Artemis II's trans-Earth coast, roughly halfway home from the Moon. Since no catalog carries a spacecraft at lunar distance, pointing came from ephemeris data generated through NASA's Horizons System and fed into TheSkyX. Three minutes separate each frame.</p>
         <div class="slideshow" data-slideshow>
           <div class="slide active">
             <img src="assets/first.jpg" alt="Orion capsule, Artemis II, trans-Earth coast">
@@ -569,7 +585,7 @@
       <div class="obs-col obs-col-end">
         <div class="obs-stack">
           <h3>Lunar &amp; Deep Space</h3>
-          <p class="obs-desc">The Moon is a mosaic of short exposures stacked to beat atmospheric seeing and sharpen crater detail along the terminator. The Ring Nebula (M57) is a color composite integrated over several hours to pull faint shell structure out of the sky background.</p>
+          <p class="obs-desc">The Moon is a mosaic of short exposures stacked to beat atmospheric seeing and sharpen crater detail along the terminator. The Ring Nebula (M57) is a color composite integrated over several minutes to pull faint shell structure out of the sky background.</p>
           <div class="slideshow" data-slideshow>
             <div class="slide active">
               <img src="assets/moon.png" alt="Half Moon, compiled exposure">
@@ -609,7 +625,7 @@
 </footer>
 
 <script>
-  // Offset anchor scrolling for the sticky nav height (56px)
+  // Offset anchor scrolling for the sticky nav height (72px)
   document.querySelectorAll('a[href^="#"]').forEach(function(link){
     link.addEventListener('click', function(e){
       var id = this.getAttribute('href');
@@ -617,7 +633,7 @@
         var el = document.querySelector(id);
         if(el){
           e.preventDefault();
-          var y = el.getBoundingClientRect().top + window.pageYOffset - 56;
+          var y = el.getBoundingClientRect().top + window.pageYOffset - 72;
           var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
           window.scrollTo({ top:y, behavior: reduced ? 'auto' : 'smooth' });
           history.pushState(null, '', id);
