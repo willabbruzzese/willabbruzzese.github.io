@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://willabbruzzese.github.io/sitemap.xml
