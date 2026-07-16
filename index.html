@@ -219,6 +219,7 @@
     content:"—"; position:absolute; left:0; color:var(--teal); font-weight:600;
   }
   .project-media{ display:flex; flex-direction:column; gap:16px; }
+  .project-media img{ width:100%; height:auto; display:block; }
   /* Dark project block — matches Field Operations contrast */
   #projects{ padding-top:0; }
   .projects-dark{
@@ -231,6 +232,7 @@
     padding:0;
     border-top:none;
     background:transparent;
+    align-items:center;
   }
   .project-field h3{ color:#fff; }
   .project-field .project-meta{ color:#8B9196; }
@@ -247,10 +249,19 @@
   }
 
   /* ---------- SLIDESHOW ---------- */
-  .slideshow{ position:relative; width:100%; background:transparent; }
-  .slide{ display:none; width:100%; }
-  .slide.active{ display:block; }
+  /* Slides stack in one grid cell so the container keeps the height of its
+     tallest slide — arrows and layout never shift between slides. */
+  .slideshow{ position:relative; width:100%; background:transparent; display:grid; }
+  .slide{
+    grid-row:1; grid-column:1;
+    width:100%;
+    visibility:hidden;
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+  }
+  .slide.active{ visibility:visible; }
   .slide img, .slide video{ width:100%; height:auto; display:block; }
+  .slide-dots{ grid-row:2; grid-column:1; }
   .slide-arrow{
     position:absolute; top:50%; transform:translateY(-50%);
     background:rgba(190, 190, 190, 0.92); color:var(--ink); border:none;
@@ -277,6 +288,103 @@
     font-family:var(--mono); font-size:12px; letter-spacing:0.04em;
     color:var(--ink-soft); background:var(--bg);
     padding:10px 12px; border-top:1px solid var(--line);
+  }
+
+  /* ---------- IMAGE EXPAND / LIGHTBOX ---------- */
+  .slide-media, .expandable-media{
+    position:relative; display:block; width:100%;
+  }
+  .obs-col .slide-media{ width:auto; display:inline-block; }
+  .slide-expand{
+    position:absolute; top:10px; right:10px; z-index:4;
+    width:34px; height:34px; border:none; cursor:pointer;
+    background:rgba(255,255,255,0.92); color:var(--ink);
+    font-size:16px; line-height:1;
+    display:flex; align-items:center; justify-content:center;
+    opacity:0; pointer-events:none;
+    transition:opacity .15s ease, background-color .15s ease;
+    box-shadow:0 1px 6px rgba(0,0,0,0.45);
+  }
+  .slide-expand:hover{ background:#fff; }
+  .slide-media:hover .slide-expand,
+  .slide-media:focus-within .slide-expand,
+  .expandable-media:hover .slide-expand,
+  .expandable-media:focus-within .slide-expand{
+    opacity:1; pointer-events:auto;
+  }
+  .lightbox{
+    position:fixed; inset:0; z-index:200;
+    display:none; align-items:center; justify-content:center;
+    padding:48px 32px;
+    background:rgba(23,25,27,0.82);
+    backdrop-filter:blur(4px);
+  }
+  .lightbox.open{ display:flex; }
+  .lightbox-panel{
+    position:relative;
+    width:fit-content; max-width:min(920px, 92vw);
+  }
+  .lightbox-card{
+    background:var(--bg);
+    border:1px solid var(--line);
+    box-shadow:0 24px 64px rgba(0,0,0,0.35);
+    overflow:hidden;
+    width:fit-content; max-width:100%;
+  }
+  .lightbox-frame{
+    padding:16px;
+    line-height:0;
+  }
+  .lightbox-frame img{
+    display:block;
+    max-width:min(840px, calc(92vw - 64px));
+    max-height:calc(85vh - 120px);
+    width:auto; height:auto;
+  }
+  .lightbox-meta{
+    border-top:1px solid var(--line);
+    padding:12px 16px 14px;
+  }
+  .lightbox-meta.is-hidden{ display:none; }
+  .lightbox-caption{
+    font-family:var(--mono); font-size:12px; letter-spacing:0.04em;
+    color:var(--ink-soft); margin-bottom:10px;
+  }
+  .lightbox-caption.is-hidden{ display:none; }
+  .lightbox-caption:last-child{ margin-bottom:0; }
+  .lightbox-close{
+    position:absolute; top:-14px; right:-14px; z-index:2;
+    width:36px; height:36px; border:none; cursor:pointer;
+    background:var(--ink); color:#fff; font-size:20px; line-height:1;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 2px 8px rgba(0,0,0,0.3);
+  }
+  .lightbox-close:hover{ background:var(--teal-deep); }
+  .lightbox-arrow{
+    position:absolute; top:50%; transform:translateY(-50%);
+    background:rgba(255,255,255,0.92); color:var(--ink); border:none;
+    width:40px; height:40px; cursor:pointer; font-size:20px; line-height:1;
+    display:none; align-items:center; justify-content:center;
+    box-shadow:0 1px 6px rgba(0,0,0,0.45); z-index:2;
+  }
+  .lightbox.has-nav .lightbox-arrow{ display:flex; }
+  .lightbox-arrow:hover{ background:#fff; }
+  .lightbox-arrow.prev{ left:-52px; }
+  .lightbox-arrow.next{ right:-52px; }
+  .lightbox-dots{
+    display:none; gap:8px; justify-content:center;
+  }
+  .lightbox.has-nav .lightbox-dots{ display:flex; }
+  .lightbox-dot{
+    width:8px; height:8px; border-radius:50%; border:none; padding:0;
+    background:var(--ph-border); cursor:pointer;
+  }
+  .lightbox-dot.active{ background:var(--teal); }
+  @media (max-width:760px){
+    .lightbox{ padding:24px 16px; }
+    .lightbox-arrow.prev{ left:8px; }
+    .lightbox-arrow.next{ right:8px; }
+    .lightbox-panel{ max-width:94vw; }
   }
 
   /* ---------- OBSERVATIONS ---------- */
@@ -333,22 +441,22 @@
   }
 
   /* ---------- FIELD OPERATIONS ---------- */
-  .field{ background:var(--ink); color:var(--bg); }
-  .field .eyebrow{ color:#5FB3AA; }
-  .field h2{ color:#fff; }
+  .field{ background:var(--bg); color:var(--ink); }
+  .field .eyebrow{ color:var(--teal); }
+  .field h2{ color:var(--ink); }
   .field-grid{ display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; }
   .field-framing{
-    font-size:21px; font-weight:600; line-height:1.5; color:#fff;
+    font-size:21px; font-weight:600; line-height:1.5; color:var(--ink);
     margin-bottom:22px; max-width:30ch;
   }
   .field ul{ list-style:none; }
   .field li{
     position:relative; padding-left:22px; margin-bottom:12px;
-    color:#C9CCCB; font-size:16px; line-height:1.6;
+    color:var(--ink); font-size:16px; line-height:1.6;
   }
-  .field li::before{ content:"—"; position:absolute; left:0; color:#5FB3AA; font-weight:600; }
-  .field .ph{ background:#22262A; border-color:#4A5055; }
-  .field .ph span{ color:#8B9196; }
+  .field li::before{ content:"—"; position:absolute; left:0; color:var(--teal); font-weight:600; }
+  .field .ph{ background:var(--ph-bg); border-color:var(--ph-border); }
+  .field .ph span{ color:#7A776D; }
   @media (max-width:760px){ .field-grid{ grid-template-columns:1fr; gap:28px; } }
 
   /* ---------- SKILLS ---------- */
@@ -406,7 +514,7 @@
     <p class="hero-tag">Physics · Colorado College · Autonomous Flight Systems</p>
     <div class="hero-actions">
       <a class="btn btn-accent" href="mailto:w_abbruzzese2024@coloradocollege.edu">Email</a>
-      <a class="btn" href="https://www.linkedin.com/in/william-abbruzzese" target="_blank" rel="noopener">LinkedIn</a><a class="btn" href="#" target="_blank" rel="noopener">Resume (PDF)</a></div>
+      <a class="btn" href="https://www.linkedin.com/in/william-abbruzzese" target="_blank" rel="noopener">LinkedIn</a><a class="btn" href="assets/Portfolio_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a></div>
   </div>
 </header>
 
@@ -434,7 +542,7 @@
 <section id="projects">
   <div class="projects-dark">
     <div class="wrap">
-      <p class="eyebrow">Research</p>
+      <p class="eyebrow">Research · 2026</p>
 
       <article class="project project-field">
         <div>
@@ -456,11 +564,21 @@
           </ul>
         </div>
         <div class="project-media">
-          <div class="ph ph-16x9" role="img" aria-label="Placeholder: drone autonomous flight test footage">
-            <span>[[VIDEO: drone autonomous flight test footage]]</span>
+          <div class="slideshow" data-slideshow>
+            <div class="slide active">
+              <img src="assets/drone.jpg" alt="Autonomous UAV research aircraft">
             </div>
-                <img src="assets/Spaerial.png" alt="UI">
+            <div class="slide">
+              <img src="assets/side.jpg" alt="Side view of the autonomous UAV research aircraft">
             </div>
+            <div class="slide">
+                <img src="assets/UI.png" alt="Spaerial Systems operator UI with live map, telemetry, and mission controls">
+              </div>
+            <button class="slide-arrow prev" aria-label="Previous slide">&#8249;</button>
+            <button class="slide-arrow next" aria-label="Next slide">&#8250;</button>
+            <span class="slide-counter"></span>
+            <div class="slide-dots"></div>
+          </div>
         </div>
       </article>
     </div>
@@ -556,7 +674,7 @@
 <section id="skills">
   <div class="wrap">
     <p class="eyebrow">Skills</p>
-    <h2>Technical stack</h2>
+    <h2>Technical Stack</h2>
     <div class="skills-grid">
       <div class="skill-cell">
         <h3>Programming</h3>
@@ -650,6 +768,23 @@
   </div>
 </footer>
 
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Expanded image" hidden>
+  <div class="lightbox-panel">
+    <button class="lightbox-close" type="button" aria-label="Close expanded image">&times;</button>
+    <button class="lightbox-arrow prev" type="button" aria-label="Previous image">&#8249;</button>
+    <button class="lightbox-arrow next" type="button" aria-label="Next image">&#8250;</button>
+    <div class="lightbox-card">
+      <div class="lightbox-frame">
+        <img id="lightbox-img" src="" alt="">
+      </div>
+      <div class="lightbox-meta" id="lightbox-meta">
+        <p class="lightbox-caption is-hidden" id="lightbox-caption"></p>
+        <div class="lightbox-dots" id="lightbox-dots"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
   // Offset anchor scrolling for the sticky nav height (72px)
   document.querySelectorAll('a[href^="#"]').forEach(function(link){
@@ -697,7 +832,155 @@
     show.querySelector('.next').addEventListener('click', function(){ go(i + 1); });
     show.querySelector('.prev').addEventListener('click', function(){ go(i - 1); });
     counter.textContent = '1 / ' + slides.length;
+
+    show._slideshowGo = go;
+    show._slideshowIndex = function(){ return i; };
   });
+
+  // Image expand — hover button on pictures only (not video)
+  (function(){
+    var lightbox = document.getElementById('lightbox');
+    var lightboxImg = document.getElementById('lightbox-img');
+    var lightboxCaption = document.getElementById('lightbox-caption');
+    var lightboxMeta = document.getElementById('lightbox-meta');
+    var lightboxDots = document.getElementById('lightbox-dots');
+    var items = [];
+    var index = 0;
+    var sourceSlideshow = null;
+
+    function makeExpandButton(){
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'slide-expand';
+      btn.setAttribute('aria-label', 'Expand image');
+      btn.innerHTML = '&#10530;';
+      return btn;
+    }
+
+    function wrapImage(img, onExpand){
+      if(img.closest('.slide-media, .expandable-media')) return;
+      var wrap = document.createElement('div');
+      wrap.className = img.closest('[data-slideshow]') ? 'slide-media' : 'expandable-media';
+      img.parentNode.insertBefore(wrap, img);
+      wrap.appendChild(img);
+      var btn = makeExpandButton();
+      wrap.appendChild(btn);
+      btn.addEventListener('click', function(e){
+        e.stopPropagation();
+        onExpand();
+      });
+    }
+
+    function getImageSlides(show){
+      return Array.prototype.filter.call(show.querySelectorAll('.slide'), function(slide){
+        return slide.querySelector('img');
+      });
+    }
+
+    function buildItemsFromSlideshow(show){
+      var imageSlides = getImageSlides(show);
+      return imageSlides.map(function(slide){
+        var img = slide.querySelector('img');
+        var captionEl = slide.querySelector('.slide-caption');
+        return {
+          src: img.getAttribute('src'),
+          alt: img.getAttribute('alt') || '',
+          caption: captionEl ? captionEl.textContent : '',
+          slide: slide
+        };
+      });
+    }
+
+    function renderLightbox(){
+      var item = items[index];
+      lightboxImg.src = item.src;
+      lightboxImg.alt = item.alt;
+      lightboxCaption.textContent = item.caption || '';
+      lightboxCaption.classList.toggle('is-hidden', !item.caption);
+
+      lightboxDots.innerHTML = '';
+      if(items.length > 1){
+        lightbox.classList.add('has-nav');
+        items.forEach(function(_, idx){
+          var dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = 'lightbox-dot' + (idx === index ? ' active' : '');
+          dot.setAttribute('aria-label', 'Go to image ' + (idx + 1));
+          dot.addEventListener('click', function(){ goLightbox(idx); });
+          lightboxDots.appendChild(dot);
+        });
+      } else {
+        lightbox.classList.remove('has-nav');
+      }
+
+      lightboxMeta.classList.toggle('is-hidden', !item.caption && items.length <= 1);
+
+      if(sourceSlideshow && sourceSlideshow._slideshowGo){
+        var allSlides = sourceSlideshow.querySelectorAll('.slide');
+        var target = items[index].slide;
+        var slideIdx = Array.prototype.indexOf.call(allSlides, target);
+        if(slideIdx >= 0) sourceSlideshow._slideshowGo(slideIdx);
+      }
+    }
+
+    function goLightbox(n){
+      index = (n + items.length) % items.length;
+      renderLightbox();
+    }
+
+    function openLightbox(newItems, startIndex, show){
+      items = newItems;
+      index = startIndex;
+      sourceSlideshow = show || null;
+      renderLightbox();
+      lightbox.hidden = false;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      lightbox.querySelector('.lightbox-close').focus();
+    }
+
+    function closeLightbox(){
+      lightbox.classList.remove('open');
+      lightbox.hidden = true;
+      document.body.style.overflow = '';
+      lightboxImg.removeAttribute('src');
+      items = [];
+      sourceSlideshow = null;
+    }
+
+    document.querySelectorAll('[data-slideshow] .slide img').forEach(function(img){
+      var slide = img.closest('.slide');
+      var show = img.closest('[data-slideshow]');
+      wrapImage(img, function(){
+        var built = buildItemsFromSlideshow(show);
+        var start = built.findIndex(function(item){ return item.slide === slide; });
+        openLightbox(built, start >= 0 ? start : 0, show);
+      });
+    });
+
+    document.querySelectorAll('.project-media img, .about-grid img, .field-grid img').forEach(function(img){
+      wrapImage(img, function(){
+        openLightbox([{
+          src: img.getAttribute('src'),
+          alt: img.getAttribute('alt') || '',
+          caption: ''
+        }], 0, null);
+      });
+    });
+
+    lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', function(e){
+      if(e.target === lightbox) closeLightbox();
+    });
+    lightbox.querySelector('.prev').addEventListener('click', function(){ goLightbox(index - 1); });
+    lightbox.querySelector('.next').addEventListener('click', function(){ goLightbox(index + 1); });
+    document.addEventListener('keydown', function(e){
+      if(!lightbox.classList.contains('open')) return;
+      if(e.key === 'Escape') closeLightbox();
+      if(e.key === 'ArrowLeft') goLightbox(index - 1);
+      if(e.key === 'ArrowRight') goLightbox(index + 1);
+    });
+  })();
 </script>
 
 </body>
