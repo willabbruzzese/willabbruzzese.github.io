@@ -481,15 +481,6 @@
       <hr style="border:none; border-top:1px solid var(--line); margin:0 0 36px;">
 
       <div class="subproject-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:center;">
-        <div>
-          <h4 style="font-size:17px; font-weight:700; margin-bottom:12px; color:var(--teal);">Flight DAQ &amp; State Estimation</h4>
-          <ul>
-            <li>Arduino-based flight data acquisition payload with onboard IMU and barometric altimeter, logging through boost, coast, and recovery.</li>
-            <li>Flew the payload on an Estes Bull Pup out of Colorado Springs (1,840 m field elevation), capturing motor burn, apogee, and ejection events in the raw telemetry.</li>
-            <li>Fused barometer and accelerometer channels through a Kalman filter to reject high-frequency structural noise and reconstruct altitude and velocity profiles — resolving apogee at 226 m, 7.2 s after ignition.</li>
-            <li>Post-flight analysis in MATLAB and Python across 20+ launch and test launch trajectories</li>
-          </ul>
-        </div>
         <div class="slideshow" data-slideshow>
           <div class="slide active">
             <img src="assets/DAQ.jpg" alt="Arduino flight DAQ with IMU and barometric altimeter">
@@ -501,6 +492,15 @@
           <button class="slide-arrow next" aria-label="Next slide">&#8250;</button>
           <span class="slide-counter"></span>
           <div class="slide-dots"></div>
+        </div>
+        <div>
+          <h4 style="font-size:17px; font-weight:700; margin-bottom:12px; color:var(--teal);">Flight DAQ &amp; State Estimation</h4>
+          <ul>
+            <li>Arduino-based flight data acquisition payload with onboard IMU and barometric altimeter, logging through boost, coast, and recovery.</li>
+            <li>Flew the payload on an Estes Bull Pup out of Colorado Springs (1,840 m field elevation), capturing motor burn, apogee, and ejection events in the raw telemetry.</li>
+            <li>Fused barometer and accelerometer channels through a Kalman filter to reject high-frequency structural noise and reconstruct altitude and velocity profiles — resolving apogee at 226 m, 7.2 s after ignition.</li>
+            <li>Post-flight analysis in MATLAB and Python across 20+ launch and test launch trajectories</li>
+          </ul>
         </div>
       </div>
 
