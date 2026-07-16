@@ -497,20 +497,29 @@
   @media (max-width:640px){
     .wrap{ padding:0 20px; }
 
-    /* Nav: tighter so name + links fit on one bar */
-    .nav-inner{ height:56px; }
+    /* Nav: name on top, all links centered underneath */
+    .nav-inner{
+      height:auto; flex-direction:column;
+      justify-content:center; align-items:center;
+      gap:8px; padding:12px 0;
+    }
     .nav-name{ font-size:13px; letter-spacing:0.04em; }
-    .nav-links{ gap:12px; }
+    .nav-links{ flex-wrap:wrap; justify-content:center; gap:8px 14px; }
     .nav-links a{ font-size:11px; }
+    .hide-sm-inline{ display:none; }
 
     /* Hero: smaller type, coords tucked into the corner clear of the buttons */
     .hero{ min-height:62vh; }
-    .hero-content{ padding:48px 0 64px; }
+    .hero-content{ padding:48px 12px 64px; }
     .hero h1{ font-size:clamp(28px, 9vw, 38px); }
     .hero-tag{ font-size:15px; }
     .btn{ padding:10px 16px; font-size:12px; }
     .hero-coords{ right:20px; bottom:14px; font-size:10px; letter-spacing:0.05em; }
 
+    /* Telemetry: even breathing room in the 2x2 grid */
+    .telemetry-inner{ padding:24px 0; row-gap:22px; }
+    .tele-item{ padding:0 16px; }
+    .tele-item:first-child, .tele-item:nth-child(3){ padding-left:12px; }
     .tele-num{ font-size:18px; }
     .tele-label{ font-size:10px; }
 
@@ -545,9 +554,9 @@
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#projects">Research</a></li>
-      <li><a href="#field">Field Ops</a></li>
-      <li class="hide-sm"><a href="#skills">Skills</a></li>
-      <li class="hide-sm"><a href="#observations">Space</a></li>
+      <li><a href="#field"><span class="hide-sm-inline">Field </span>Ops</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#observations">Space</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
@@ -833,7 +842,7 @@
 </div>
 
 <script>
-  // Offset anchor scrolling for the sticky nav height (72px)
+  // Offset anchor scrolling for the sticky nav height (measured live)
   document.querySelectorAll('a[href^="#"]').forEach(function(link){
     link.addEventListener('click', function(e){
       var id = this.getAttribute('href');
@@ -841,7 +850,8 @@
         var el = document.querySelector(id);
         if(el){
           e.preventDefault();
-          var y = el.getBoundingClientRect().top + window.pageYOffset - 72;
+          var navH = document.querySelector('.nav').offsetHeight;
+          var y = el.getBoundingClientRect().top + window.pageYOffset - navH;
           var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
           window.scrollTo({ top:y, behavior: reduced ? 'auto' : 'smooth' });
           history.pushState(null, '', id);
