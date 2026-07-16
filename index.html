@@ -488,6 +488,53 @@
   footer span{
     font-family:var(--mono); font-size:12px; color:var(--ink-soft); letter-spacing:0.04em;
   }
+
+  /* ---------- MOBILE / PHONE ---------- */
+  /* Touch screens have no hover — keep the expand button visible */
+  @media (hover:none){
+    .slide-expand{ opacity:1; pointer-events:auto; }
+  }
+  @media (max-width:640px){
+    .wrap{ padding:0 20px; }
+
+    /* Nav: tighter so name + links fit on one bar */
+    .nav-inner{ height:56px; }
+    .nav-name{ font-size:13px; letter-spacing:0.04em; }
+    .nav-links{ gap:12px; }
+    .nav-links a{ font-size:11px; }
+
+    /* Hero: smaller type, coords tucked into the corner clear of the buttons */
+    .hero{ min-height:62vh; }
+    .hero-content{ padding:48px 0 64px; }
+    .hero h1{ font-size:clamp(28px, 9vw, 38px); }
+    .hero-tag{ font-size:15px; }
+    .btn{ padding:10px 16px; font-size:12px; }
+    .hero-coords{ right:20px; bottom:14px; font-size:10px; letter-spacing:0.05em; }
+
+    .tele-num{ font-size:18px; }
+    .tele-label{ font-size:10px; }
+
+    h2{ margin-bottom:24px; }
+    .about-grid .about-body{ font-size:17px; }
+    .projects-dark{ padding:48px 0; }
+    .projects-light{ padding-top:36px; }
+    .project h3{ font-size:21px; }
+    .obs-col .slide-caption{ min-height:0; }
+    .skill-cell{ padding:20px 22px; }
+
+    /* Slideshow controls sized for thumbs */
+    .slide-arrow{ width:34px; height:34px; font-size:16px; }
+    .slide-expand{ width:30px; height:30px; font-size:14px; }
+
+    /* Contact: long email button can't overflow the screen */
+    .contact-links .btn{
+      max-width:100%;
+      overflow-wrap:anywhere;
+      text-align:center;
+    }
+
+    footer .wrap{ flex-direction:column; gap:4px; }
+  }
 </style>
 </head>
 <body>
