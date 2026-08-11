@@ -242,10 +242,19 @@
   .project-field .ph{ background:#22262A; border-color:#4A5055; }
   .project-field .ph span{ color:#8B9196; }
   .projects-light{ padding-top:48px; }
+  .project-2{ display:block; padding-top:0; }
+  .project-2 > h3{ margin-bottom:28px; }
+  .subproject-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;
+  }
+  .subproject-rule{
+    border:none; border-top:1px solid var(--line); margin:48px 0;
+  }
   @media (max-width:760px){
     .project{ grid-template-columns:1fr; gap:28px; }
     .project-2{ grid-template-columns:1fr !important; }
-    .subproject-grid{ grid-template-columns:1fr !important; }
+    .subproject-grid{ grid-template-columns:1fr; gap:28px; }
+    .subproject-rule{ margin:36px 0; }
   }
 
   /* ---------- SLIDESHOW ---------- */
@@ -644,54 +653,51 @@
   </div>
 
   <div class="wrap projects-light">
-    <article class="project project-2" style="display:block; padding-top:0;">
+    <article class="project project-2">
 
       <p class="project-meta">Research · 2025</p>
-<h3 style="margin-bottom:20px;">Rocket Avionics &amp; Control Systems</h3>
+      <h3>Rocket Avionics &amp; Control Systems</h3>
 
-<div class="subproject-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start;">
-  <div class="slideshow" data-slideshow>
-    <div class="slide-frame">
-      <div class="slide active">
-        <img src="assets/Payload.png" alt="Flight computer controlling gimbal">
+      <div class="subproject-grid">
+        <div class="slideshow" data-slideshow>
+          <div class="slide active">
+            <img src="assets/Payload.png" alt="Flight computer controlling gimbal">
+          </div>
+          <div class="slide">
+            <img src="assets/Perfboard.png" alt="Perfboard layout">
+          </div>
+          <div class="slide">
+            <img src="assets/CAD.png" alt="Nose cone and electronics bay custom CAD design">
+          </div>
+          <div class="slide">
+            <img src="assets/Kalman.png" alt="Kalman filter altitude and velocity reconstruction from onboard IMU and barometer log">
+          </div>
+          <button class="slide-arrow prev" aria-label="Previous slide">&#8249;</button>
+          <button class="slide-arrow next" aria-label="Next slide">&#8250;</button>
+          <span class="slide-counter"></span>
+          <div class="slide-dots"></div>
+        </div>
+        <div>
+          <h4 style="font-size:17px; font-weight:700; margin-bottom:12px; color:var(--teal);">Thrust Vector Controlled Rocket</h4>
+          <ul>
+            <li>Designed a thrust-vector-control flight computer from scratch on a Teensy 4.1, fusing IMU and barometric data through a Kalman filter to drive a two-axis gimbaled motor mount for active attitude stabilization.</li>
+            <li>Modeled and tuned the control system in MATLAB/Simulink and a custom Python simulation, and assessed propulsive-landing feasibility using real solid-motor thrust curves to quantify control-authority and throttle limits.</li>
+            <li>Engineered the airframe and avionics in CAD (nose cone, electronics bay, gimbal) with custom power distribution and vibration isolation; earlier iterations built a fully analog PID controller from discrete components (without a microcontroller) to validate 2D stabilization on a self-balancing platform.</li>
+            <li>Flew an early-iteration payload on an Estes Bull Pup out of Colorado Springs (1,840 m field elevation), capturing motor burn, apogee, and ejection events in the raw telemetry.</li>
+          </ul>
+        </div>
       </div>
-      <div class="slide">
-        <img src="assets/Perfboard.png" alt="Perfboard layout">
-      </div>
-      <div class="slide">
-        <img src="assets/CAD.png" alt="Nose cone and electronics bay custom CAD design">
-      </div>
-      <div class="slide">
-        <img src="assets/Kalman.png" alt="Kalman filter altitude and velocity reconstruction from onboard IMU and barometer log">
-      </div>
-      <button class="slide-arrow prev" aria-label="Previous slide">&#8249;</button>
-      <button class="slide-arrow next" aria-label="Next slide">&#8250;</button>
-      <span class="slide-counter"></span>
-    </div>
-    <div class="slide-dots"></div>
-  </div>
 
-  <div>
-    <h4 style="font-size:17px; font-weight:700; margin-bottom:12px; color:var(--teal);">Thrust Vector Controlled Rocket</h4>
-    <ul>
-      <li>Designed a thrust-vector-control flight computer from scratch on a Teensy 4.1, fusing IMU and barometric data through a Kalman filter to drive a two-axis gimbaled motor mount for active attitude stabilization.</li>
-      <li>Modeled and tuned the control system in MATLAB/Simulink and a custom Python simulation, and assessed propulsive-landing feasibility using real solid-motor thrust curves to quantify control-authority and throttle limits.</li>
-      <li>Engineered the airframe and avionics in CAD (nose cone, electronics bay, gimbal) with custom power distribution and vibration isolation; earlier iterations built a fully analog PID controller from discrete components (without a microcontroller) to validate 2D stabilization on a self-balancing platform.</li>
-      <li>Flew early iteration payload on an Estes Bull Pup out of Colorado Springs (1,840 m field elevation), capturing motor burn, apogee, and ejection events in the raw telemetry.</li>
-    </ul>
-  </div>
-</div>
+      <hr class="subproject-rule">
 
-<hr style="border:none; border-top:1px solid var(--line); margin:36px 0;">
-      
-      <div class="subproject-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:center; padding-bottom:36px;">
+      <div class="subproject-grid">
         <div>
           <h4 style="font-size:17px; font-weight:700; margin-bottom:12px; color:var(--teal);">Analog PID Control</h4>
           <ul>
-            <li>Fully analog PID controller built from discrete op-amps and passives. No microcontroller in the loop, every term realized in hardware.</li>
+            <li>Fully analog PID controller built from discrete op-amps and passives. No microcontroller in the loop — every term realized in hardware.</li>
             <li>Designed and simulated the circuit in LTSpice, tuning proportional and derivative stages against the plant response before committing to hardware.</li>
-            <li>Bench-validated 2D state-space stabilization on a self-balancing platform, then laying out a custom PCB.</li>
-            <li>Doing it in analog forces the control theory into physical components</li>
+            <li>Bench-validated 2D state-space stabilization on a self-balancing platform, then laid out a custom PCB.</li>
+            <li>Doing it in analog forces the control theory into physical components.</li>
           </ul>
         </div>
         <div class="slideshow" data-slideshow>
