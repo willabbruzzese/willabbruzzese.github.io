@@ -644,38 +644,42 @@
     <article class="project project-2" style="display:block; padding-top:0;">
 
       <p class="project-meta">Research · 2025</p>
-      <h3 style="margin-bottom:28px;">Rocket Avionics &amp; Control Systems</h3>
+<h3 style="margin-bottom:20px;">Rocket Avionics &amp; Control Systems</h3>
 
-      <div class="subproject-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:center;">
-        <div class="slideshow" data-slideshow>
-          <div class="slide active">
-            <img src="assets/Payload.png" alt="Flight computer controlling gimbal">
-          </div>
-          <div class="slide">
-            <img src="assets/Perfboard.png" alt="Perfboard layout">
-          </div>
-          <div class="slide">
-            <img src="assets/CAD.png" alt="Nose cone and electronics bay custom CAD design">
-          </div>
-          <div class="slide">
-            <img src="assets/Kalman.png" alt="Kalman filter altitude and velocity reconstruction from onboard IMU and barometer log">
-          </div>
-          <button class="slide-arrow prev" aria-label="Previous slide">&#8249;</button>
-          <button class="slide-arrow next" aria-label="Next slide">&#8250;</button>
-          <span class="slide-counter"></span>
-          <div class="slide-dots"></div>
-        </div>
-        <div>
-          <h4 style="font-size:17px; font-weight:700; margin-bottom:12px; color:var(--teal);">Thrust Vector Controlled Rocket</h4>
-          <ul>
-            <li>Designed a thrust-vector-control flight computer from scratch on a Teensy 4.1, fusing IMU and barometric data through a Kalman filter to drive a two-axis gimbaled motor mount for active attitude stabilization.</li>
-            <li>Modeled and tuned the control system in MATLAB/Simulink and a custom Python simulation, and assessed propulsive-landing feasibility using real solid-motor thrust curves to quantify control-authority and throttle limits.</li>
-            <li> Engineered the airframe and avionics in CAD (nose cone, electronics bay, gimbal) with custom power distribution and vibration isolation; earlier iterations built a fully analog PID controller from discrete components (without a microcontroller) to validate 2D stabilization on a self-balancing platform.</li>
-            <li>Flew early iteration payload on an Estes Bull Pup out of Colorado Springs (1,840 m field elevation), capturing motor burn, apogee, and ejection events in the raw telemetry.</li>
-        </div>
+<div class="subproject-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start;">
+  <div class="slideshow" data-slideshow>
+    <div class="slide-frame">
+      <div class="slide active">
+        <img src="assets/Payload.png" alt="Flight computer controlling gimbal">
       </div>
-      
-      <hr style="border:none; border-top:1px solid var(--line); margin:0 0 36px;">
+      <div class="slide">
+        <img src="assets/Perfboard.png" alt="Perfboard layout">
+      </div>
+      <div class="slide">
+        <img src="assets/CAD.png" alt="Nose cone and electronics bay custom CAD design">
+      </div>
+      <div class="slide">
+        <img src="assets/Kalman.png" alt="Kalman filter altitude and velocity reconstruction from onboard IMU and barometer log">
+      </div>
+      <button class="slide-arrow prev" aria-label="Previous slide">&#8249;</button>
+      <button class="slide-arrow next" aria-label="Next slide">&#8250;</button>
+      <span class="slide-counter"></span>
+    </div>
+    <div class="slide-dots"></div>
+  </div>
+
+  <div>
+    <h4 style="font-size:17px; font-weight:700; margin-bottom:12px; color:var(--teal);">Thrust Vector Controlled Rocket</h4>
+    <ul>
+      <li>Designed a thrust-vector-control flight computer from scratch on a Teensy 4.1, fusing IMU and barometric data through a Kalman filter to drive a two-axis gimbaled motor mount for active attitude stabilization.</li>
+      <li>Modeled and tuned the control system in MATLAB/Simulink and a custom Python simulation, and assessed propulsive-landing feasibility using real solid-motor thrust curves to quantify control-authority and throttle limits.</li>
+      <li>Engineered the airframe and avionics in CAD (nose cone, electronics bay, gimbal) with custom power distribution and vibration isolation; earlier iterations built a fully analog PID controller from discrete components (without a microcontroller) to validate 2D stabilization on a self-balancing platform.</li>
+      <li>Flew early iteration payload on an Estes Bull Pup out of Colorado Springs (1,840 m field elevation), capturing motor burn, apogee, and ejection events in the raw telemetry.</li>
+    </ul>
+  </div>
+</div>
+
+<hr style="border:none; border-top:1px solid var(--line); margin:36px 0;">
       
       <div class="subproject-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:center; padding-bottom:36px;">
         <div>
