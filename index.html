@@ -702,12 +702,10 @@
         <div>
           <h4 style="font-size:17px; font-weight:700; margin-bottom:12px; color:var(--teal);">Flight DAQ &amp; State Estimation</h4>
           <ul>
-            <li>Designed a thrust-vector-control flight computer from scratch on a Teensy 4.1, fusing IMU and barometric data via a complementary filter to drive a two-axis gimbaled motor mount for active attitude stabilization.</li>
+            <li>Designed a thrust-vector-control flight computer from scratch on a Teensy 4.1, fusing IMU and barometric data through a Kalman filter to drive a two-axis gimbaled motor mount for active attitude stabilization.</li>
             <li>Modeled and tuned the control system in MATLAB/Simulink and a custom Python simulation, and assessed propulsive-landing feasibility using real solid-motor thrust curves to quantify control-authority and throttle limits.</li>
             <li> Engineered the airframe and avionics in CAD (nose cone, electronics bay, gimbal) with custom power distribution and vibration isolation; earlier iterations built a fully analog PID controller from discrete components (without a microcontroller) to validate 2D stabilization on a self-balancing platform.</li>
             <li>Flew early iteration payload on an Estes Bull Pup out of Colorado Springs (1,840 m field elevation), capturing motor burn, apogee, and ejection events in the raw telemetry.</li>
-            <li>Fused barometer and accelerometer channels through a Kalman filter to reject high-frequency structural noise and reconstruct altitude and velocity profiles — resolving apogee at 226 m, 7.2 s after ignition.</li>
-          </ul>
         </div>
       </div>
 
